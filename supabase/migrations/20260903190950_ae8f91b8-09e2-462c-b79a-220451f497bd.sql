@@ -1,0 +1,21 @@
+revoke execute on function public.has_role(uuid, public.app_role) from public, anon;
+revoke execute on function public.is_org_member(uuid) from public, anon;
+revoke execute on function public.is_demo_org(uuid) from public, anon;
+revoke execute on function public.can_manage_property(uuid) from public, anon;
+revoke execute on function public.can_manage_unit(uuid) from public, anon;
+revoke execute on function public.is_tenancy_party(uuid) from public, anon;
+revoke execute on function public.is_tenant_of_unit(uuid) from public, anon;
+revoke execute on function public.can_access_conversation(uuid) from public, anon;
+revoke execute on function public.is_verified_tenancy(uuid) from public, anon;
+revoke execute on function public.handle_new_user() from public, anon, authenticated;
+revoke execute on function public.touch_updated_at() from public, anon, authenticated;
+
+grant execute on function public.has_role(uuid, public.app_role) to authenticated;
+grant execute on function public.is_org_member(uuid) to authenticated;
+grant execute on function public.is_demo_org(uuid) to authenticated;
+grant execute on function public.can_manage_property(uuid) to authenticated;
+grant execute on function public.can_manage_unit(uuid) to authenticated;
+grant execute on function public.is_tenancy_party(uuid) to authenticated;
+grant execute on function public.is_tenant_of_unit(uuid) to authenticated;
+grant execute on function public.can_access_conversation(uuid) to authenticated;
+grant execute on function public.is_verified_tenancy(uuid) to authenticated;

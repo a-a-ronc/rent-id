@@ -1,0 +1,43 @@
+# Line endings
+#
+# Prettier's `endOfLine` defaults to "lf" and there is no override in
+# .prettierrc, so every file it formats must be LF in the working tree. Git on
+# Windows ships with core.autocrlf=true, which rewrites LF to CRLF on checkout —
+# so a Windows clone got CRLF files that Prettier then flagged character by
+# character ("Delete ␍"), roughly 41,000 of them. The committed blobs were
+# always LF; only the checkout was wrong.
+#
+# `eol=lf` overrides core.autocrlf for this repository, so every platform gets
+# the same bytes on disk. This is a property of the repo, not of each
+# developer's git config, which is the only way it stays fixed for the next
+# person who clones it.
+* text=auto eol=lf
+
+# Windows-only scripts must keep CRLF or cmd.exe mis-parses them.
+*.bat    text eol=crlf
+*.cmd    text eol=crlf
+
+# Shell scripts must keep LF or bash fails with "\r: command not found".
+*.sh     text eol=lf
+
+# Binary — never touch, never diff as text.
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.webp   binary
+*.avif   binary
+*.ico    binary
+*.pdf    binary
+*.woff   binary
+*.woff2  binary
+*.ttf    binary
+*.otf    binary
+*.eot    binary
+*.zip    binary
+*.gz     binary
+*.bundle binary
+
+# Generated — keep out of diffs and reviews.
+bun.lock              -diff linguist-generated
+src/routeTree.gen.ts  -diff linguist-generated

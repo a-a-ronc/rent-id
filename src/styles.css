@@ -1,0 +1,176 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * RentID design system — "Frosted Ledger".
+ * All brand values live here as tokens. Change these to rebrand the app.
+ */
+
+@theme inline {
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --ease-settle: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --animate-settle: settle 520ms var(--ease-settle) both;
+  --animate-rise: rise 560ms var(--ease-settle) both;
+  --animate-fade: fade 460ms var(--ease-settle) both;
+
+  @keyframes settle {
+    from {
+      opacity: 0;
+      transform: translateY(9px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(7px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+:root {
+  --radius: 1rem;
+
+  --background: oklch(0.975 0.004 25);
+  --foreground: oklch(0.21 0.012 20);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.012 20);
+  --popover: oklch(0.995 0.002 25);
+  --popover-foreground: oklch(0.21 0.012 20);
+
+  /* Near-black ink from the wordmark, with the coral gradient as accent. */
+  --brand: oklch(0.21 0.012 20);
+  --brand-foreground: oklch(0.985 0.004 30);
+  --brand-gradient-from: oklch(0.68 0.176 30);
+  --brand-gradient-to: oklch(0.6 0.221 12);
+
+  --primary: oklch(0.21 0.012 20);
+  --primary-foreground: oklch(0.985 0.004 30);
+  --secondary: oklch(0.958 0.008 25);
+  --secondary-foreground: oklch(0.21 0.012 20);
+  --muted: oklch(0.958 0.008 25);
+  --muted-foreground: oklch(0.52 0.018 20);
+  --accent: oklch(0.62 0.212 18);
+  --accent-foreground: oklch(0.99 0.004 25);
+
+  --success: oklch(0.52 0.098 162);
+  --success-foreground: oklch(0.99 0.004 160);
+  --warning: oklch(0.7 0.15 60);
+  --warning-foreground: oklch(0.99 0.004 80);
+  --destructive: oklch(0.56 0.208 22);
+  --destructive-foreground: oklch(0.99 0.004 20);
+
+  --border: oklch(0.21 0.012 20 / 0.1);
+  --input: oklch(0.21 0.012 20 / 0.14);
+  --ring: oklch(0.62 0.212 18);
+
+  --sidebar: oklch(0.985 0.004 25);
+  --sidebar-foreground: oklch(0.21 0.012 20);
+  --sidebar-primary: oklch(0.21 0.012 20);
+  --sidebar-primary-foreground: oklch(0.985 0.004 30);
+  --sidebar-accent: oklch(0.958 0.008 25);
+  --sidebar-accent-foreground: oklch(0.21 0.012 20);
+  --sidebar-border: oklch(0.21 0.012 20 / 0.08);
+  --sidebar-ring: oklch(0.62 0.212 18);
+
+  --glass-surface: oklch(1 0 0 / 0.62);
+  --glass-ring: oklch(0.21 0.012 20 / 0.07);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Frosted card surface used across the app. */
+@utility glass {
+  background: var(--glass-surface);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  box-shadow: inset 0 0 0 1px var(--glass-ring);
+}
+
+@utility num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+@utility label-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted-foreground);
+}
